@@ -22,7 +22,7 @@ func assert(err error, context string) {
 }
 
 func main() {
-	err := envconfig.Process("CONTAINERCOUNTER", &opts)
+	err := envconfig.Process("COUNTER", &opts)
 	if err != nil {
 		log.Fatalf("Error parsing ENV vars %s", err)
 	}
