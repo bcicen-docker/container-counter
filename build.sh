@@ -1,4 +1,4 @@
 #!/bin/sh
 
-rm  container-counter.*.64
-GOOS=linux go build -o container-counter.linux.64
+rm  ./stage/container-counter.*.64
+GOOS=linux go build -o ./stage/container-counter.linux.64
