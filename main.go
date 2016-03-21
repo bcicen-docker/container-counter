@@ -1,18 +1,19 @@
 package main
 
 import (
-		"github.com/cyberdelia/statsd"
-		"github.com/fsouza/go-dockerclient"
-        "github.com/kelseyhightower/envconfig"
-		"log"
-	)
+	"log"
+
+	"github.com/cyberdelia/statsd"
+	"github.com/fsouza/go-dockerclient"
+	"github.com/kelseyhightower/envconfig"
+)
 
 type Options struct {
-    Statsd  string `short:"s" long:"statsd" description:"Statsd Server url. e.g. 'localhost:8125'"`
+	Statsd string `short:"s" long:"statsd" description:"Statsd Server url. e.g. 'localhost:8125'"`
 }
 
 var (
-    opts  Options
+	opts Options
 )
 
 func assert(err error, context string) {
@@ -49,7 +50,7 @@ func main() {
 			log.Println("create:", msg.ID[:12], msg.Status)
 			err = statsdclient.IncrementGauge("dockercount.statsd.gauge", 1, 1)
 			assert(err, "statsd")
-            err = statsdclient.Flush()
+			err = statsdclient.Flush()
 			assert(err, "statsd")
 		}
 	}
